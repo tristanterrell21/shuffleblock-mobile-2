@@ -42,6 +42,10 @@ export default class App extends React.Component {
           </TouchableOpacity>
         </View>
         <View style={styles.page}>
+          <View style={{alignItems: 'center'}}>
+            <Image source={require('./assets/logo.png')} style={styles.logo}></Image>
+            <Text style={styles.credit}>Powered by ShuffleBlock LLC</Text>
+          </View>
           {
             this.state.page === 'Home' ? <Home changePage={this._changePage.bind(this)}></Home> :
             this.state.page === 'Settings' ? <Settings changePage={this._changePage.bind(this)}></Settings> :
@@ -75,7 +79,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#ffffff',
     bottom: 10,
-    fontSize: 32
+    fontSize: 32,
   },
   navigationBar: {
     position: 'absolute',
@@ -99,11 +103,25 @@ const styles = StyleSheet.create({
     height: '80%',
     width: '100%',
   },
+  logo: {
+    position: 'absolute',
+    resizeMode: 'contain',
+    top: 200,
+    opacity: 0.25,
+    height: 200,
+    width: 200
+  },
   page: {
     position:'absolute',
     top: '15%',
     width: '100%',
     height: '90%',
-    backgroundColor: '#212124'
+    backgroundColor: '#212124',
+  },
+  credit: {
+    position: 'absolute',
+    color: '#818181',
+    opacity: 0.5,
+    top: 425
   }
 });
