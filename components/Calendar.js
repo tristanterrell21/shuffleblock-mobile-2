@@ -32,7 +32,7 @@ const styles = StyleSheet.create ({
     imageContainer: {
         position: 'relative',
         alignSelf: 'center',
-        top:'5%',
+        top: 25,
         left:0,
         width:windowWidth,
         height:500

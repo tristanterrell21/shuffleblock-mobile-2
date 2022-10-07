@@ -1,18 +1,46 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import Home from './components/Home'
 import Settings from './components/Settings'
 import Calendar from './components/Calendar'
 import Messages from './components/Messages'
 import Classes from './components/Classes'
+
+import newStudent from './utils/student'
 export default class App extends React.Component {
   constructor (props) {
     super (props)
     this.state = {
-      page:'Home'
+      page:'Home',
+      student: {}
     }
   }
+
+  // async componentDidMount () {
+  //   try {
+  //     let asyncStudent = await AsyncStorage.getItem('student')
+  //     asnycStudent = JSON.parse(asyncStudent)
+  //     if (asyncStudent.classes) {
+  //       this.setState({student:asyncStudent})
+  //       console.log('bad\n' + this.state.student)
+  //     }
+  //     else {
+  //       try {
+  //         await AsyncStorage.setItem('student', JSON.stringify(student))
+  //         this.setState()
+  //         console.log('good\n' + this.state.student)
+  //       }
+  //       catch (err) {
+  //           console.log('unexpected\n' + err)
+  //       }
+  //     }
+  //   }
+  //   catch (err) {
+  //     console.log('expected\n' + err)
+  //   }
+  // }
 
   _changePage = function (page) {
     this.setState({page:page})
@@ -48,7 +76,7 @@ export default class App extends React.Component {
           </View>
           {
             this.state.page === 'Home' ? <Home changePage={this._changePage.bind(this)}></Home> :
-            this.state.page === 'Settings' ? <Settings changePage={this._changePage.bind(this)}></Settings> :
+            this.state.page === 'Settings' ? <Settings changePage={this._changePage.bind(this)} student={this.state.student} ></Settings> :
             this.state.page === 'Calendar' ? <Calendar changePage={this._changePage.bind(this)}></Calendar> :
             this.state.page === 'Messages' ? <Messages changePage={this._changePage.bind(this)}></Messages> :
             this.state.page === 'Classes' ? <Classes changePage={this._changePage.bind(this)}></Classes> :
